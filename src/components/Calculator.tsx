@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useCallback } from "react"
-import { calculateSalary } from "@/lib/taxCalculator"
+import { calculateSalary, TaxCalculationResult } from "@/lib/taxCalculator"
 import { getSalaryRange } from "@/lib/salaryData"
 import { jobRoles } from "@/lib/jobRoles"
 import { cityData } from "@/lib/cityData"
@@ -10,7 +10,6 @@ import ResultCard from "./ResultCard"
 import VerdictBadge from "./VerdictBadge"
 import CityComparison from "./CityComparison"
 import AffiliateSection from "./AffiliateSection"
-import AdSlot from "./AdSlot"
 
 // All form state in ONE single object
 type FormState = {
@@ -35,12 +34,23 @@ interface CalculatorProps {
   preselectedRole?: string
 }
 
+interface ExtendedTaxCalculationResult extends TaxCalculationResult {
+  salaryRange: { min: number; max: number }
+  midSalary: number
+  jobTitle: string
+  city: string
+  experience: string
+  companyType: string
+  verdictCTC: number | null
+  taxRegime: "new" | "old"
+}
+
 export default function Calculator({ preselectedRole }: CalculatorProps) {
   const [form, setForm] = useState<FormState>({
     ...DEFAULT_FORM,
     jobTitle: preselectedRole || ""
   })
-  const [result, setResult] = useState<any>(null)
+  const [result, setResult] = useState<ExtendedTaxCalculationResult | null>(null)
   const [hasCalculated, setHasCalculated] = useState(false)
 
   // Single update function for all fields - clears results immediately
