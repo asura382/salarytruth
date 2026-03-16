@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://salarytruth.in/sitemap.xml',
+    sitemap: 'https://salarytruth.vercel.app/sitemap.xml',
   };
 }
