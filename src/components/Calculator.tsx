@@ -10,6 +10,7 @@ import ResultCard from "./ResultCard"
 import VerdictBadge from "./VerdictBadge"
 import CityComparison from "./CityComparison"
 import AffiliateSection from "./AffiliateSection"
+import RoastCard from "./RoastCard"
 
 // All form state in ONE single object
 type FormState = {
@@ -281,6 +282,33 @@ export default function Calculator({ preselectedRole }: CalculatorProps) {
             marketRange={result.salaryRange}
             currentCTC={result.verdictCTC || undefined}
           />
+          
+          {/* Salary Roast Card Feature */}
+          <div className="bg-gradient-to-br from-indigo-900/50 to-purple-900/50 rounded-2xl p-6 my-6 border border-indigo-500/30">
+            <h3 className="text-2xl font-bold text-white mb-4 text-center">Generate Your Roast Card 🔥</h3>
+            <p className="text-gray-300 text-sm mb-4 text-center">
+              Create a stunning shareable card with your salary breakdown + some friendly roasts!
+            </p>
+            <RoastCard
+              jobTitle={result.jobTitle}
+              city={result.city}
+              experience={result.experience}
+              grossCTC={result.midSalary * 100000}
+              inHandMonthly={result.inHandMonthly}
+              inHandAnnual={result.inHandAnnual}
+              incomeTaxAnnual={result.incomeTaxAnnual}
+              employeePF={result.employeePF}
+              verdict={result.verdictCTC ? (
+                result.verdictCTC < result.salaryRange.min * 0.85 ? "underpaid" :
+                result.verdictCTC > result.salaryRange.max * 1.15 ? "exceptional" :
+                result.verdictCTC > result.salaryRange.max * 1.05 ? "well" : "fairly"
+              ) : "fairly"}
+              marketMin={result.salaryRange.min}
+              marketMax={result.salaryRange.max}
+              companyType={result.companyType}
+            />
+          </div>
+          
           <CityComparison
             roleSlug={jobRoles.find(r => r.name === result.jobTitle)?.slug || ''}
             experienceLevel={result.experience as 'fresher' | 'mid' | 'senior' | 'lead'}
