@@ -31,8 +31,15 @@ const DEFAULT_FORM: FormState = {
   taxRegime: "new"
 }
 
-export default function Calculator() {
-  const [form, setForm] = useState<FormState>(DEFAULT_FORM)
+interface CalculatorProps {
+  preselectedRole?: string
+}
+
+export default function Calculator({ preselectedRole }: CalculatorProps) {
+  const [form, setForm] = useState<FormState>({
+    ...DEFAULT_FORM,
+    jobTitle: preselectedRole || ""
+  })
   const [result, setResult] = useState<any>(null)
   const [hasCalculated, setHasCalculated] = useState(false)
 

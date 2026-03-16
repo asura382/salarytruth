@@ -129,34 +129,7 @@ export default async function RolePage({ params }: PageProps) {
 
       {/* Affiliate Section */}
       <section className="mb-12">
-        <AffiliateSection
-          recommendations={[
-            {
-              title: 'Find Higher Paying Jobs',
-              description: `Browse ${roleName} jobs paying ₹15+ LPA`,
-              url: 'https://linkedin.com/jobs',
-              buttonText: 'View Jobs on LinkedIn →',
-            },
-            {
-              title: 'Upskill to Earn More',
-              description: `Top courses to boost your ${roleName} salary by 40%`,
-              url: 'https://coursera.org',
-              buttonText: 'Browse Courses on Coursera →',
-            },
-            {
-              title: 'Best Credit Cards for Your Salary',
-              description: 'Maximize your in-hand salary with the right card',
-              url: 'https://bankbazaar.com',
-              buttonText: 'Compare Cards →',
-            },
-            {
-              title: 'File ITR for Free',
-              description: 'File your income tax return in 10 minutes',
-              url: 'https://cleartax.in',
-              buttonText: 'File on ClearTax →',
-            },
-          ]}
-        />
+        <AffiliateSection />
       </section>
 
       {/* FAQ Section */}
