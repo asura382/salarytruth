@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getAllRoleSlugs } from '@/lib/jobRoles';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://salarytruth.in';
+  const baseUrl = 'https://salarytruth.vercel.app';
   const roleSlugs = getAllRoleSlugs();
 
   // Homepage
