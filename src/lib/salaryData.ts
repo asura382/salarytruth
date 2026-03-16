@@ -356,8 +356,11 @@ function mapCompanyType(companyType: string): 'startup' | 'midsize' | 'mnc' {
       return 'startup'
     case 'international':
     case 'corporate':
+    case 'MNC':  // Handle uppercase MNC
       return 'mnc'
     default:
-      return companyType as 'startup' | 'midsize' | 'mnc'
+      // Convert to lowercase for safety
+      const lowerType = companyType.toLowerCase() as 'startup' | 'midsize' | 'mnc'
+      return lowerType
   }
 }
