@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description: "Free Indian salary calculator. Know your exact monthly in-hand salary after income tax, PF deduction and professional tax. Compare salaries across cities. Are you underpaid?",
   keywords: ["salary calculator", "in-hand salary", "Indian salary", "tax calculator", "CTC calculator", "take home salary"],
   authors: [{ name: "SalaryTruth.in" }],
+  other: {
+    "google-site-verification": "hGurCvQN8zbR1v7wX_pT2q5Fb1qO3RJvsW-thuLrCQI",
+  },
   openGraph: {
     title: "Indian Salary Calculator 2025 — Exact In-Hand After Tax & PF",
     description: "Free Indian salary calculator. Know your exact monthly in-hand salary after income tax, PF deduction and professional tax.",
