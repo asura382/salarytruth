@@ -106,44 +106,190 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="mb-16">
+      {/* Salary Pages Section */}
+      <section className="mb-16 bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+          Calculate Specific Salary Packages
+        </h2>
+        <p className="text-gray-600 mb-8 text-center max-w-2xl mx-auto">
+          Quick calculations for common CTC packages. See exact in-hand salaries for popular amounts.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+          {[3, 4, 5, 6, 7, 8, 9, 10].map(amount => (
+            <Link
+              key={amount}
+              href={`/salary-amount/${amount}-lpa-in-hand`}
+              className="bg-white hover:bg-blue-100 rounded-xl p-4 text-center transition-all transform hover:scale-105 shadow-md"
+            >
+              <p className="text-sm font-semibold text-gray-900">{amount} LPA</p>
+              <p className="text-xs text-gray-600">In-Hand Calculator</p>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-6 text-center">
+          <Link
+            href="/salary-amount/12-lpa-in-hand"
+            className="text-blue-600 hover:text-blue-700 font-medium"
+          >
+            View more salary packages →
+          </Link>
+        </div>
+      </section>
+
+      {/* Comparison Pages Section */}
+      <section className="mb-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          Compare & Learn
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <Link 
+            href="/compare/new-vs-old-tax-regime"
+            className="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
+          >
+            <div className="text-4xl mb-4">⚖️</div>
+            <h3 className="text-xl font-bold mb-3">Tax Regimes</h3>
+            <p className="text-blue-100 text-sm">
+              New vs Old Tax Regime comparison with real examples
+            </p>
+          </Link>
+          
+          <Link 
+            href="/compare/bangalore-vs-hyderabad"
+            className="bg-gradient-to-br from-green-500 to-blue-600 text-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
+          >
+            <div className="text-4xl mb-4">🏙️</div>
+            <h3 className="text-xl font-bold mb-3">City Salaries</h3>
+            <p className="text-green-100 text-sm">
+              Bangalore vs Hyderabad salary & cost of living battle
+            </p>
+          </Link>
+          
+          <Link 
+            href="/compare/startup-vs-mnc-salary"
+            className="bg-gradient-to-br from-orange-500 to-red-600 text-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
+          >
+            <div className="text-4xl mb-4">🚀</div>
+            <h3 className="text-xl font-bold mb-3">Company Types</h3>
+            <p className="text-orange-100 text-sm">
+              Startup vs MNC salary, ESOPs & benefits breakdown
+            </p>
+          </Link>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section className="mb-16 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-8 md:p-12">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              Latest from the Blog
+            </h2>
+            <p className="text-gray-600">
+              Expert guides on salary, tax planning & career growth
+            </p>
+          </div>
+          <Link 
+            href="/blog"
+            className="hidden md:inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg"
+          >
+            View All Posts →
+          </Link>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-6">
+          <Link href="/blog/how-to-calculate-in-hand-salary-from-ctc" className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all">
+            <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full mb-3">
+              Tax Planning
+            </span>
+            <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+              How to Calculate In-Hand Salary from CTC
+            </h3>
+            <p className="text-sm text-gray-600 line-clamp-3">
+              Learn exactly how to calculate your in-hand salary from CTC with real examples.
+            </p>
+          </Link>
+          
+          <Link href="/blog/new-vs-old-tax-regime-2025-which-is-better" className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all">
+            <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full mb-3">
+              Tax Planning
+            </span>
+            <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+              New vs Old Tax Regime 2025: Which is Better?
+            </h3>
+            <p className="text-sm text-gray-600 line-clamp-3">
+              Detailed comparison with calculators to find which regime saves you more tax.
+            </p>
+          </Link>
+          
+          <Link href="/blog/how-to-negotiate-salary-in-india" className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all">
+            <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full mb-3">
+              Career Growth
+            </span>
+            <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+              How to Negotiate Salary: 10 Tactics That Work
+            </h3>
+            <p className="text-sm text-gray-600 line-clamp-3">
+              Proven salary negotiation tactics used by top performers to get 30-50% hikes.
+            </p>
+          </Link>
+        </div>
+        
+        <div className="mt-6 text-center md:hidden">
+          <Link 
+            href="/blog"
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg"
+          >
+            View All Posts →
+          </Link>
+        </div>
+      </section>
+      {/* Enhanced FAQ Section */}
+      <section id="faq" className="mb-16">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
           Frequently Asked Questions
         </h2>
+        <p className="text-gray-600 mb-8 text-center max-w-2xl mx-auto">
+          Get instant answers to common questions about salary calculation, taxes, and deductions
+        </p>
         <div className="space-y-4 max-w-4xl mx-auto">
-          <FAQItem
-            question="How is in-hand salary calculated in India?"
-            answer="In-hand salary is calculated by deducting Employee PF (12% of basic), Professional Tax (state-specific, usually ₹200/month), and Income Tax (based on tax regime slabs) from your gross CTC. Our calculator uses the latest 2025 tax slabs and includes standard deduction."
-          />
-          <FAQItem
-            question="What is the in-hand salary for ₹10 LPA in 2025?"
-            answer="For ₹10 LPA in the new tax regime, your approximate in-hand salary would be ₹75,000-₹78,000 per month after deductions (PF, professional tax, and income tax). The exact amount varies based on your city's professional tax rate."
-          />
-          <FAQItem
-            question="What is the in-hand salary for ₹15 LPA in 2025?"
-            answer="For ₹15 LPA in the new tax regime, your approximate in-hand salary would be ₹1,05,000-₹1,10,000 per month. Under the old regime, it might be slightly lower depending on your investments."
-          />
-          <FAQItem
-            question="What is the in-hand salary for ₹20 LPA in 2025?"
-            answer="For ₹20 LPA, expect around ₹1,40,000-₹1,45,000 per month in-hand under the new tax regime. The new regime is typically more beneficial for this salary range."
-          />
-          <FAQItem
-            question="What is the in-hand salary for ₹25 LPA in 2025?"
-            answer="For ₹25 LPA, your in-hand salary would be approximately ₹1,75,000-₹1,80,000 per month. At this level, the new regime usually offers better savings compared to the old regime."
-          />
-          <FAQItem
-            question="New tax regime vs old tax regime — which is better?"
-            answer="The new tax regime (2025) is generally better for most salaried individuals as it offers lower tax rates and a higher standard deduction of ₹75,000. However, if you have significant investments (₹1.5L+ in 80C, HRA benefits), the old regime might be better. Our calculator shows both for comparison."
-          />
-          <FAQItem
-            question="How much PF is deducted from salary?"
-            answer="Employee PF contribution is 12% of your basic salary (which is typically 40% of CTC). For example, on a ₹10 LPA CTC, your basic would be ₹4L, and PF deduction would be ₹48,000 annually (₹4,000/month)."
-          />
-          <FAQItem
-            question="What is professional tax and who pays it?"
-            answer="Professional Tax is a state-level tax deducted monthly from your salary. It varies by state: Karnataka (Bangalore) charges ₹200/month, Maharashtra (Mumbai/Pune) charges ₹200/month, Delhi has no professional tax, while Telangana (Hyderabad) and Tamil Nadu (Chennai) charge ₹150/month."
-          />
+          <Link href="/faq/how-is-pf-calculated" className="block">
+            <FAQItem
+              question="How is PF (Provident Fund) calculated in India?"
+              answer="Employee PF contribution is 12% of your basic salary. For example, on a ₹10 LPA CTC, your basic would be ₹4L, and PF deduction would be ₹48,000 annually (₹4,000/month). Your employer contributes an equal amount."
+            />
+          </Link>
+          <Link href="/faq/what-is-professional-tax" className="block">
+            <FAQItem
+              question="What is professional tax and who pays it?"
+              answer="Professional Tax is a state-level tax deducted monthly from your salary. It varies by state: Karnataka (Bangalore) charges ₹200/month, Maharashtra (Mumbai/Pune) charges ₹200/month, Delhi has no professional tax, while Telangana (Hyderabad) and Tamil Nadu (Chennai) charge ₹150/month."
+            />
+          </Link>
+          <Link href="/faq/how-to-negotiate-salary" className="block">
+            <FAQItem
+              question="How to negotiate salary effectively in India?"
+              answer="Never reveal current CTC first, always have competing offers, use the magic script: 'Based on market research and my skills, I'm expecting ₹[X] LPA.' Research shows people who negotiate earn ₹15-25 lakhs more over their career."
+            />
+          </Link>
+          <Link href="/faq/new-vs-old-tax-regime" className="block">
+            <FAQItem
+              question="New tax regime vs old tax regime — which is better?"
+              answer="The new tax regime (2025) is generally better for most salaried individuals as it offers lower tax rates. However, if you have significant investments (₹1.5L+ in 80C, HRA benefits), the old regime might be better. Use our calculator to compare both."
+            />
+          </Link>
+          <Link href="/faq/average-salary-increase-per-year" className="block">
+            <FAQItem
+              question="What is the average salary increase per year in India?"
+              answer="Average annual hike is 10-15%, but switching jobs can give you 30-100% increases. High performers get 20-25% annually. The biggest wealth creation happens through strategic job switches every 2-3 years."
+            />
+          </Link>
+        </div>
+        <div className="mt-6 text-center">
+          <Link
+            href="/faq/how-is-pf-calculated"
+            className="text-blue-600 hover:text-blue-700 font-medium"
+          >
+            View all FAQs →
+          </Link>
         </div>
       </section>
 
