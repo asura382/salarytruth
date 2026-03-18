@@ -243,6 +243,93 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* More Free Tools Section */}
+      <section className="mb-16">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+          More Free Salary Tools
+        </h2>
+        <p className="text-gray-600 mb-8 text-center max-w-2xl mx-auto">
+          Everything you need to understand, compare, and optimize your salary
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {/* Card 1 - Tax Savings Calculator */}
+          <Link 
+            href="/tax-savings"
+            className="group bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-green-500"
+          >
+            <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+              💰
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
+              Save Up to ₹1 Lakh in Tax
+            </h3>
+            <p className="text-gray-600 text-sm mb-4">
+              Find exactly how much tax you can save legally with PF, NPS, insurance and more deductions
+            </p>
+            <div className="flex items-center text-green-600 font-semibold text-sm group-hover:gap-2 transition-all">
+              Calculate Tax Savings →
+            </div>
+          </Link>
+
+          {/* Card 2 - Compare Salaries */}
+          <Link 
+            href="/compare"
+            className="group bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-purple-500"
+          >
+            <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+              ⚖️
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
+              Compare Two Salaries
+            </h3>
+            <p className="text-gray-600 text-sm mb-4">
+              See who earns more between two profiles. Find your salary percentile among professionals in your city
+            </p>
+            <div className="flex items-center text-purple-600 font-semibold text-sm group-hover:gap-2 transition-all">
+              Compare Now →
+            </div>
+          </Link>
+
+          {/* Card 3 - Company Reviews */}
+          <Link 
+            href="/companies"
+            className="group bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-orange-500"
+          >
+            <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+              🏢
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
+              What Does Your Company Pay?
+            </h3>
+            <p className="text-gray-600 text-sm mb-4">
+              Browse anonymous salary data from TCS, Infosys, Amazon, Google and 50+ top Indian companies
+            </p>
+            <div className="flex items-center text-orange-600 font-semibold text-sm group-hover:gap-2 transition-all">
+              Browse Companies →
+            </div>
+          </Link>
+
+          {/* Card 4 - Appraisal Email Generator */}
+          <Link 
+            href="/appraisal-email"
+            className="group bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-blue-500"
+          >
+            <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+              ✉️
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
+              Write Your Appraisal Email
+            </h3>
+            <p className="text-gray-600 text-sm mb-4">
+              AI generates a data-driven salary hike request email based on your market underpayment percentage
+            </p>
+            <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
+              Generate Email →
+            </div>
+          </Link>
+        </div>
+      </section>
       {/* Enhanced FAQ Section */}
       <section id="faq" className="mb-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
