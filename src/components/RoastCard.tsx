@@ -63,6 +63,8 @@ export default function RoastCard(props: RoastCardProps) {
   )
   const roastLines = getRoastComment(props.verdict)
 
+  const jobTitleFormatted = props.jobTitle.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+  
   const experienceLabel = {
     fresher: "0-2 Years",
     mid: "2-5 Years", 
@@ -97,35 +99,34 @@ export default function RoastCard(props: RoastCardProps) {
     setIsGenerating(false)
   }
 
-  const handleShare = async () => {
-    if (!cardRef.current) return
-    setIsGenerating(true)
-    try {
-      const dataUrl = await toPng(cardRef.current, {
-        quality: 1.0,
-        pixelRatio: 2,
-        backgroundColor: "#0f172a"
-      })
-      
-      // Convert to blob for sharing
-      const response = await fetch(dataUrl)
-      const blob = await response.blob()
-      const file = new File([blob], "salary-truth.png", { type: "image/png" })
-      
-      if (navigator.share && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          title: "My Salary Truth Card",
-          text: "Check your exact in-hand salary at salarytruth.vercel.app",
-          files: [file]
-        })
-      } else {
-        // Fallback to download
-        handleDownload()
-      }
-    } catch (error) {
-      console.error("Error sharing:", error)
-    }
-    setIsGenerating(false)
+  const shareWhatsApp = async () => {
+    await handleDownload()
+    const text = encodeURIComponent(
+      `💰 My Salary Truth\n\n` +
+      `${jobTitleFormatted} | ${props.city}\n` +
+      `Monthly In-Hand: ₹${props.inHandMonthly.toLocaleString()}\n` +
+      `Verdict: ${verdictConfig.label} ${verdictConfig.emoji}\n\n` +
+      `Check your salary at salarytruth.vercel.app`
+    )
+    window.open(`https://wa.me/?text=${text}`, '_blank')
+  }
+
+  const shareTwitter = async () => {
+    await handleDownload()
+    const percentile = Math.round(
+      15 + ((props.inHandMonthly - props.marketMin) / (props.marketMax - props.marketMin)) * 77
+    )
+    const text = encodeURIComponent(
+      `I earn more than ${percentile}% of ${jobTitleFormatted} professionals in ${props.city}! 💰\n\n` +
+      `Check your salary at salarytruth.vercel.app #SalaryTruth #IndianSalary`
+    )
+    window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank')
+  }
+
+  const shareLinkedIn = async () => {
+    await handleDownload()
+    const url = encodeURIComponent('https://salarytruth.vercel.app')
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank')
   }
 
   return (
@@ -372,20 +373,34 @@ export default function RoastCard(props: RoastCardProps) {
 
       {/* Action Buttons - NOT captured in image */}
       {!isGenerated ? (
-        <div className="flex gap-3 justify-center mt-4">
+        <div className="flex gap-3 justify-center mt-4 flex-wrap">
           <button
             onClick={handleDownload}
             disabled={isGenerating}
-            className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg"
+            className="px-5 py-3 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg text-sm"
           >
-            {isGenerating ? "Generating..." : "Download Card 📸"}
+            📸 Download PNG
           </button>
           <button
-            onClick={handleShare}
+            onClick={shareWhatsApp}
             disabled={isGenerating}
-            className="px-6 py-3 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg"
+            className="px-5 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg text-sm"
           >
-            {isGenerating ? "Processing..." : "Share 🚀"}
+            📱 WhatsApp
+          </button>
+          <button
+            onClick={shareTwitter}
+            disabled={isGenerating}
+            className="px-5 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg text-sm"
+          >
+            🐦 Twitter
+          </button>
+          <button
+            onClick={shareLinkedIn}
+            disabled={isGenerating}
+            className="px-5 py-3 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg text-sm"
+          >
+            💼 LinkedIn
           </button>
         </div>
       ) : (

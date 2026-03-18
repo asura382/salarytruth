@@ -4,6 +4,7 @@ import Script from 'next/script';
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import InstallBanner from "@/components/InstallBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,8 +17,14 @@ export const metadata: Metadata = {
   keywords: ["salary calculator", "in-hand salary", "Indian salary", "tax calculator", "CTC calculator", "take home salary"],
   authors: [{ name: "SalaryTruth.in" }],
   metadataBase: new URL('https://salarytruth.vercel.app'),
+  manifest: '/manifest.json',
+  themeColor: '#1a56db',
   other: {
     "google-site-verification": "hGurCvQN8zbR1v7wX_pT2q5Fb1qO3RJvsW-thuLrCQI",
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "apple-mobile-web-app-title": "SalaryTruth",
   },
   openGraph: {
     title: "Indian Salary Calculator 2025 — Exact In-Hand After Tax & PF",
@@ -45,17 +52,32 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1a56db" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4594147660385258"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        <Script id="sw-register" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                  .then(reg => console.log('SW registered'))
+                  .catch(err => console.log('SW failed', err))
+              })
+            }
+          `}
+        </Script>
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <InstallBanner />
       </body>
     </html>
   );
