@@ -11,6 +11,7 @@ import VerdictBadge from "./VerdictBadge"
 import CityComparison from "./CityComparison"
 import AffiliateSection from "./AffiliateSection"
 import RoastCard from "./RoastCard"
+import TaxBracketVisualizer from "./TaxBracketVisualizer"
 
 // All form state in ONE single object
 type FormState = {
@@ -281,6 +282,11 @@ export default function Calculator({ preselectedRole }: CalculatorProps) {
             result={result} 
             marketRange={result.salaryRange}
             currentCTC={result.verdictCTC || undefined}
+          />
+          <TaxBracketVisualizer
+            annualIncome={result.taxableIncome}
+            taxRegime={result.taxRegime}
+            totalTax={result.incomeTaxAnnual}
           />
           
           {/* Salary Roast Card Feature */}

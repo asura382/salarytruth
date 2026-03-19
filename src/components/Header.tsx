@@ -1,10 +1,26 @@
 "use client"
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme")
+    if (saved === "dark") {
+      setIsDark(true)
+      document.documentElement.setAttribute("data-theme", "dark")
+    }
+  }, [])
+
+  const toggleTheme = () => {
+    const newTheme = isDark ? "light" : "dark"
+    setIsDark(!isDark)
+    document.documentElement.setAttribute("data-theme", newTheme)
+    localStorage.setItem("theme", newTheme)
+  }
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -13,6 +29,15 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-2">
             <h1 className="text-2xl font-bold text-blue-600">SalaryTruth.in</h1>
           </Link>
+          
+          {/* Dark Mode Toggle */}
+          <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors text-lg"
+            title={isDark ? "Switch to Light" : "Switch to Dark"}
+          >
+            {isDark ? "☀️" : "🌙"}
+          </button>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6">
