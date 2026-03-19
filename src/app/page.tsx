@@ -244,92 +244,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* More Free Tools Section */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-          More Free Salary Tools
+      {/* All Tools Grid */}
+      <section className="max-w-6xl mx-auto px-4 py-12">
+        <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">
+          🛠️ All Free Salary Tools
         </h2>
-        <p className="text-gray-600 mb-8 text-center max-w-2xl mx-auto">
-          Everything you need to understand, compare, and optimize your salary
+        <p className="text-gray-500 text-center mb-8">
+          Everything you need to understand, optimize and grow your salary
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {/* Card 1 - Tax Savings Calculator */}
-          <Link 
-            href="/tax-savings"
-            className="group bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-green-500"
-          >
-            <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
-              💰
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Save Up to ₹1 Lakh in Tax
-            </h3>
-            <p className="text-gray-600 text-sm mb-4">
-              Find exactly how much tax you can save legally with PF, NPS, insurance and more deductions
-            </p>
-            <div className="flex items-center text-green-600 font-semibold text-sm group-hover:gap-2 transition-all">
-              Calculate Tax Savings →
-            </div>
-          </Link>
-
-          {/* Card 2 - Compare Salaries */}
-          <Link 
-            href="/compare"
-            className="group bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-purple-500"
-          >
-            <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
-              ⚖️
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Compare Two Salaries
-            </h3>
-            <p className="text-gray-600 text-sm mb-4">
-              See who earns more between two profiles. Find your salary percentile among professionals in your city
-            </p>
-            <div className="flex items-center text-purple-600 font-semibold text-sm group-hover:gap-2 transition-all">
-              Compare Now →
-            </div>
-          </Link>
-
-          {/* Card 3 - Company Reviews */}
-          <Link 
-            href="/companies"
-            className="group bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-orange-500"
-          >
-            <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
-              🏢
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              What Does Your Company Pay?
-            </h3>
-            <p className="text-gray-600 text-sm mb-4">
-              Browse anonymous salary data from TCS, Infosys, Amazon, Google and 50+ top Indian companies
-            </p>
-            <div className="flex items-center text-orange-600 font-semibold text-sm group-hover:gap-2 transition-all">
-              Browse Companies →
-            </div>
-          </Link>
-
-          {/* Card 4 - Appraisal Email Generator */}
-          <Link 
-            href="/appraisal-email"
-            className="group bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-blue-500"
-          >
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
-              ✉️
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Write Your Appraisal Email
-            </h3>
-            <p className="text-gray-600 text-sm mb-4">
-              AI generates a data-driven salary hike request email based on your market underpayment percentage
-            </p>
-            <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
-              Generate Email →
-            </div>
-          </Link>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { href: "/hike-calculator", icon: "📈", title: "Hike Calculator", desc: "Is your appraisal hike fair?", color: "bg-green-50 border-green-200", iconBg: "bg-green-100" },
+            { href: "/tax-savings", icon: "💰", title: "Tax Savings Calculator", desc: "Save up to ₹1 lakh legally", color: "bg-yellow-50 border-yellow-200", iconBg: "bg-yellow-100" },
+            { href: "/compare", icon: "⚖️", title: "Compare Two Salaries", desc: "See who earns more", color: "bg-purple-50 border-purple-200", iconBg: "bg-purple-100" },
+            { href: "/city-compare", icon: "🏙️", title: "City Cost Comparison", desc: "Should you move for that offer?", color: "bg-blue-50 border-blue-200", iconBg: "bg-blue-100" },
+            { href: "/affordability", icon: "🏠", title: "Affordability Calculator", desc: "Home loan & SIP projections", color: "bg-orange-50 border-orange-200", iconBg: "bg-orange-100" },
+            { href: "/salary-slip", icon: "📄", title: "Salary Slip Generator", desc: "Generate professional pay slips", color: "bg-gray-50 border-gray-200", iconBg: "bg-gray-100" },
+            { href: "/job-offer", icon: "💼", title: "Job Offer Evaluator", desc: "Should I accept this offer?", color: "bg-teal-50 border-teal-200", iconBg: "bg-teal-100" },
+            { href: "/notice-period", icon: "📅", title: "Notice Period Calculator", desc: "Last working day & buyout cost", color: "bg-red-50 border-red-200", iconBg: "bg-red-100" },
+            { href: "/inflation-calculator", icon: "📉", title: "Inflation Impact Calculator", desc: "Is your salary beating inflation?", color: "bg-pink-50 border-pink-200", iconBg: "bg-pink-100" },
+            { href: "/freelance-calculator", icon: "💻", title: "Freelance Rate Calculator", desc: "How much to charge per hour?", color: "bg-violet-50 border-violet-200", iconBg: "bg-violet-100" },
+            { href: "/appraisal-email", icon: "✉️", title: "Appraisal Email Generator", desc: "Write your salary hike request", color: "bg-blue-50 border-blue-200", iconBg: "bg-blue-100" },
+            { href: "/companies", icon: "🏢", title: "Company Salary Reviews", desc: "What does your company pay?", color: "bg-amber-50 border-amber-200", iconBg: "bg-amber-100" },
+          ].map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className={`group ${tool.color} rounded-2xl p-6 hover:shadow-xl transition-all transform hover:-translate-y-1 border-2`}
+            >
+              <div className={`w-12 h-12 ${tool.iconBg} rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform`}>
+                {tool.icon}
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{tool.title}</h3>
+              <p className="text-sm text-gray-600">{tool.desc}</p>
+            </Link>
+          ))}
         </div>
       </section>
+
       {/* Enhanced FAQ Section */}
       <section id="faq" className="mb-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
