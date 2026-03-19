@@ -19,11 +19,29 @@ export default function Header() {
             <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
               Home
             </Link>
+            <Link href="/hike-calculator" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+              Hike Calc
+            </Link>
+            <Link href="/city-compare" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+              City Compare
+            </Link>
+            <Link href="/affordability" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+              Affordability
+            </Link>
+            <Link href="/salary-slip" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+              Salary Slip
+            </Link>
+            <Link href="/job-offer" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+              Job Offer
+            </Link>
             <Link href="/tax-savings" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
               Tax Savings
             </Link>
             <Link href="/compare" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
               Compare Salaries
+            </Link>
+            <Link href="/companies" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+              Companies
             </Link>
             <Link href="/blog" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
               Blog
@@ -57,6 +75,41 @@ export default function Header() {
                 🏠 Home
               </Link>
               <Link 
+                href="/hike-calculator" 
+                className="text-gray-600 hover:text-blue-600 transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                📈 Hike Calculator
+              </Link>
+              <Link 
+                href="/city-compare" 
+                className="text-gray-600 hover:text-blue-600 transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                🏙️ City Compare
+              </Link>
+              <Link 
+                href="/affordability" 
+                className="text-gray-600 hover:text-blue-600 transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                💰 Affordability
+              </Link>
+              <Link 
+                href="/salary-slip" 
+                className="text-gray-600 hover:text-blue-600 transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                📄 Salary Slip
+              </Link>
+              <Link 
+                href="/job-offer" 
+                className="text-gray-600 hover:text-blue-600 transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                💼 Job Offer
+              </Link>
+              <Link 
                 href="/tax-savings" 
                 className="text-gray-600 hover:text-blue-600 transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
@@ -69,6 +122,13 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 ⚖️ Compare Salaries
+              </Link>
+              <Link 
+                href="/companies" 
+                className="text-gray-600 hover:text-blue-600 transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                🏢 Companies
               </Link>
               <Link 
                 href="/blog" 
