@@ -9,22 +9,68 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const amount = parseInt(slug.split('-')[0])
-  const breakdown = getSalaryBreakdown(amount)
   
-  if (!breakdown) {
-    return {
-      title: "Salary Not Found",
-    }
+  // Extract LPA number from slug like "4-lpa-in-hand"
+  const lpaMatch = slug.match(/^(\d+)-lpa/)
+  const lpa = lpaMatch ? parseInt(lpaMatch[1]) : 0
+  const annualCTC = lpa * 100000
+  
+  // Calculate approximate in-hand for meta tags
+  const monthlyGross = annualCTC / 12
+  const pf = Math.round(annualCTC * 0.4 * 0.12 / 12)
+  const pt = 200
+  
+  // Simple tax calculation (New Regime 2025)
+  let annualTax = 0
+  const taxableIncome = annualCTC - 75000 // standard deduction
+  if (taxableIncome > 1500000) {
+    annualTax = (taxableIncome - 1500000) * 0.30 + 
+      150000 * 0.20 + 50000 * 0.15 + 
+      200000 * 0.10 + 400000 * 0.05
+  } else if (taxableIncome > 1200000) {
+    annualTax = (taxableIncome - 1200000) * 0.20 + 
+      50000 * 0.15 + 200000 * 0.10 + 400000 * 0.05
+  } else if (taxableIncome > 1000000) {
+    annualTax = (taxableIncome - 1000000) * 0.15 + 
+      200000 * 0.10 + 400000 * 0.05
+  } else if (taxableIncome > 700000) {
+    annualTax = (taxableIncome - 700000) * 0.10 + 
+      400000 * 0.05
+  } else if (taxableIncome > 300000) {
+    annualTax = (taxableIncome - 300000) * 0.05
   }
+  
+  // Apply 87A rebate
+  if (taxableIncome <= 1200000) annualTax = 0
+  
+  // Add cess
+  annualTax = Math.round(annualTax * 1.04)
+  const monthlyTax = Math.round(annualTax / 12)
+  
+  const inHandMonthly = Math.round(
+    monthlyGross - pf - pt - monthlyTax
+  )
+  
+  const inHandFormatted = inHandMonthly >= 100000
+    ? `₹${(inHandMonthly/100000).toFixed(1)}L`
+    : `₹${Math.round(inHandMonthly/1000)}K`
 
   return {
-    title: `${amount} LPA In-Hand Salary - Monthly Breakdown & Tax Calculation`,
-    description: `Exact in-hand salary for ${amount} LPA CTC. Calculate monthly take-home pay after tax, PF, and professional tax deductions.`,
-    keywords: [`${amount} lpa in hand`, `${amount} lakhs salary`, `in-hand salary calculator`, `salary calculation India`],
+    title: `${lpa} LPA In-Hand Salary 2025 — ${inHandFormatted}/Month After Tax & PF`,
+    description: `${lpa} LPA CTC = ${inHandFormatted} per month in-hand after PF deduction of ₹${pf.toLocaleString()}/month and income tax. See city-wise breakdown for Bangalore, Mumbai, Delhi. New vs old tax regime comparison. Free instant calculator.`,
+    keywords: [
+      `${lpa} lpa in hand salary`,
+      `${lpa} lpa means how much per month`,
+      `${lpa} lpa salary per month`,
+      `${lpa} lpa take home salary india`,
+      `${lpa} lpa in hand`,
+      `${lpa} lakhs salary`,
+      `in-hand salary calculator`,
+      `salary calculation India`
+    ],
     openGraph: {
-      title: `${amount} LPA In-Hand Salary Breakdown`,
-      description: `See exactly how much you'll get in-hand with ${amount} LPA CTC`,
+      title: `${lpa} LPA = ${inHandFormatted}/month In-Hand Salary India 2025`,
+      description: `Exact in-hand salary for ${lpa} LPA CTC after all deductions. Free calculator.`,
       type: "website",
     },
   }
@@ -47,9 +93,70 @@ export default async function SalaryPage({ params }: PageProps) {
     .filter(s => s !== amount)
     .slice(0, 6)
 
+  // Calculate hero section values
+  const annualCTC = amount * 100000
+  const monthlyGross = annualCTC / 12
+  const pf = Math.round(annualCTC * 0.4 * 0.12 / 12)
+  const pt = 200
+  
+  let annualTax = 0
+  const taxableIncome = annualCTC - 75000
+  if (taxableIncome > 1500000) {
+    annualTax = (taxableIncome - 1500000) * 0.30 + 
+      150000 * 0.20 + 50000 * 0.15 + 
+      200000 * 0.10 + 400000 * 0.05
+  } else if (taxableIncome > 1200000) {
+    annualTax = (taxableIncome - 1200000) * 0.20 + 
+      50000 * 0.15 + 200000 * 0.10 + 400000 * 0.05
+  } else if (taxableIncome > 1000000) {
+    annualTax = (taxableIncome - 1000000) * 0.15 + 
+      200000 * 0.10 + 400000 * 0.05
+  } else if (taxableIncome > 700000) {
+    annualTax = (taxableIncome - 700000) * 0.10 + 
+      400000 * 0.05
+  } else if (taxableIncome > 300000) {
+    annualTax = (taxableIncome - 300000) * 0.05
+  }
+  
+  if (taxableIncome <= 1200000) annualTax = 0
+  annualTax = Math.round(annualTax * 1.04)
+  const monthlyTax = Math.round(annualTax / 12)
+  
+  const inHandMonthly = Math.round(monthlyGross - pf - pt - monthlyTax)
+  const inHandFormatted = inHandMonthly >= 100000
+    ? `₹${(inHandMonthly/100000).toFixed(1)}L`
+    : `₹${Math.round(inHandMonthly/1000)}K`
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4">
       <div className="max-w-5xl mx-auto">
+        {/* Hero Answer Box */}
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl p-8 mb-8 text-center">
+          <div className="text-lg text-blue-100 mb-2">
+            {amount} LPA CTC =
+          </div>
+          <div className="text-5xl font-bold mb-2">
+            {inHandFormatted}/month
+          </div>
+          <div className="text-blue-100 text-sm mb-4">
+            In-hand salary after PF + Tax (New Regime 2025)
+          </div>
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div className="text-2xl font-bold">₹{pf.toLocaleString()}</div>
+              <div className="text-xs text-blue-200">PF/month</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold">₹{monthlyTax.toLocaleString()}</div>
+              <div className="text-xs text-blue-200">Tax/month</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold">{amount < 7 ? "₹0" : `₹${Math.round(annualTax/amount/1000)}K`}</div>
+              <div className="text-xs text-blue-200">Effective rate</div>
+            </div>
+          </div>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
